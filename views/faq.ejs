@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src ="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <title>Aeroporto Helpdesk</title>
+    <base href="/">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="https://cdn.discordapp.com/attachments/929744400056193044/968194795250020402/airplane-icon-plane-sign-vector-22346493.png">
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+
+
+<body class="background">
+<div class="BlockWhite">
+    <img src="https://cdn.discordapp.com/attachments/929744400056193044/971485948955205672/airplane-icon-plane-sign-vector-22346493.png" onclick="location.href='/'" class="btn_init2" >
+
+    <%- include('./partials/bFaq.ejs') %>
+    <%- include('./partials/bTickets.ejs') %>
+    <%- include('./partials/bAtendimento.ejs') %>
+    <%- include('./partials/bUser.ejs') %>
+    <div>
+        <svg style="float: left;" xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
+            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+            <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"/>
+        </svg>
+        <h1 style="font-size: 1.9rem;">    FAQ</h1>
+    </div>
+    <% if (isAuthenticated) { %>
+        <button type="button" onclick="location.href='/criarfaqs/'" class="btntopA">Criar Faqs</button>
+    <% } %>
+        <div class="BlockBlue2">
+            <div class="dropdown">
+                <button class="dropbtn">Categoria</button>
+                <div class="dropdown-content">
+                    <a href="/faq">Todos</a>
+                    <a href="/faq/aerobus">Aerobus</a>
+                    <a href="/faq/servicos">Serviços e Compras</a>
+                    <a href="/faq/bagagem">Bagagem</a>
+                    <a href="/faq/voos">Voos</a>
+                    <a href="/faq/mobilidade_reduzida">Mobilidade Reduzida</a>
+                </div>
+            </div>
+            <% if (faqs.length > 0) { %>
+                <% faqs.forEach(faq => { %>
+                    <div class="BlockWhiteGreyF">
+                        <p class="categoria"> <%= faq.categoria %> 
+                        <button class="btn_pin" id="pin" ><i class='fas fa-map-pin'></i></button> <p></p>
+                        <p><b>Pergunta: </b> <%= faq.pergunta %> </p>
+                        <p><b>Resposta: </b> <%= faq.resposta %> </p>
+                        <% if (isAuthenticated) { %>
+                            <form action="/faq/edit/<%= faq._id%>" method="POST">
+                                <button class="btn_edit_delete" type="button" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop" aria-controls="staticBackdrop"><i class='fas fa-pen place size'  data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" title="Editar" ></i></button>
+                                <% faqs.forEach(faq => { %>
+                                <div class="offcanvas offcanvas-end" data-bs-backdrop="static" tabindex="-1" id="staticBackdrop" aria-labelledby="staticBackdropLabel">
+                                    <div class="offcanvas-header">
+                                    <h5 class="offcanvas-title" id="staticBackdropLabel">Editar FAQ</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                                </div>
+                                <div class="offcanvas-body">
+                                    <form action="/faq/edit/<%= faq._id%>" method="post">
+                                      <input class="BlockWhiteGrey" id="categoria" name="categoria" value="<%= faq.categoria %>" placeholder="Categoria" required>
+                                      <input class="BlockWhiteGrey" type="text" id="pergunta" name="pergunta" value="<%= faq.pergunta %>" placeholder="Pergunta" required>
+                                      <input class="BlockWhiteGrey" type="text" id="resposta" name="resposta" value="<%= faq.resposta %>" placeHolder="Resposta" required>
+
+                                      <input type="submit" value="Guardar" class="btn3"/>
+                                    </form>
+                                  </div>
+                                </div>
+                                <% }) %>
+                            </form>
+                            <form action="/faq/delete/<%= faq._id %>" method="post">
+                                <button class="btn_edit_delete"><i class='fas fa-trash-alt place size' data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" title="Apagar"></i></button></p>    
+                            </form>
+                        <% } %>
+                    </div>
+                <% }) %>
+            <% } else { %>
+                <p> Não existem Faqs.</p>
+            <% } %>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

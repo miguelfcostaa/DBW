@@ -1,0 +1,22 @@
+<div class="circleA">
+    <svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" fill="#CAE8F2" class="svgCircleA" viewBox="0 0 16 16">
+      <circle cx="8" cy="8" r="8"/>
+    </svg>
+    <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="black" viewBox="0 0 16 16" class="svgAgents">
+      <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+      <path fill-rule="evenodd" d="M5.216 14A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216z"/>
+      <path d="M4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/>
+    </svg>
+    <button type="button" class="collapsibleA"> </button>
+</div>
+<div class="hide">
+      <% if (isAuthenticated) { %> 
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-person" viewBox="0 0 16 16">
+            <path d="M12 1a1 1 0 0 1 1 1v10.755S12 11 8 11s-5 1.755-5 1.755V2a1 1 0 0 1 1-1h8zM4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4z"/>
+            <path d="M8 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+          </svg> <%= users.nome %><br>
+          
+      <% } else { %>
+        Não há agentes online no momento. 
+      <% } %>
+</div>  

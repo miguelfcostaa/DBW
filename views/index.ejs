@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src ="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js" ></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="https://cdn.discordapp.com/attachments/929744400056193044/968194795250020402/airplane-icon-plane-sign-vector-22346493.png">
+    <title>Aeroporto Helpdesk</title>
+</head> 
+
+<body class="background1" style="overflow-x: hidden;">
+    
+    <div class="BlockWhite">
+      <div class="topbtn">
+        <%if (!isAuthenticated) { %>
+            <button type="button" onclick="location.href='/login'" class="btntop">Login</button>
+        <% }else{ %>
+            <form action="/logout" method="post">
+                <input type="submit" value='Logout' class="btntop">
+            </form>
+        <%}%>
+
+        <img src="https://cdn.discordapp.com/attachments/929744400056193044/971485948955205672/airplane-icon-plane-sign-vector-22346493.png" onclick="location.href='/'" class="btn_init" >
+        
+        <%- include('./partials/bAgentes.ejs') %>
+        
+        <%- include('./partials/bProfile.ejs') %>
+ 
+      </div>
+        <div class="maintext">
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="card" style="width: 18rem;">
+                  <img src="https://cdn.discordapp.com/attachments/929744400056193044/978248314728382474/Ponto-Interrogacao-PNG-1024x1024.png" style="height: 100px; width: 100px; margin: 10px; padding-left: 30%;" class="card-img-top">
+                  <div class="card-body">
+                    <p class="card-text" style="text-align: justify; margin: 5px; ">As FAQ traduzem-se nas questões colocadas com alguma frequência. Aqui a sua dúvida poderá já ter sido respondida anteriormente, por outra pessoa! Certifique-se que a sua pergunta já se encontra respondida, caso contrario, prossiga para a abertura de um Ticket. </p>
+                    <button type="button" onclick="location.href='/faq/'" class="btn" style="margin-left: 25%;">FAQ</button>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="card" style="width: 18rem;">
+                  <img src="https://cdn.discordapp.com/attachments/929744400056193044/978249919729106954/a2a9c9decb93249017f1b55cbad97641-icone-do-circulo-de-atendimento-ao-cliente.png" style="height: 130px; width: 130px; margin: 10px; padding-left: 30%;" class="card-img-top">
+                  <div class="card-body">
+                    <p class="card-text" style="text-align: justify; margin: 5px;"> Na secção de Atendimento, tem a oportunidade de falar com um dos nossos agentes, que estão disponíveis para o atender e falar consigo através de um sistema de bate-papo. O atendimento pode ser anónimo ou não.</p>
+                    <button type="button" onclick="location.href='/atendimento/'" class="btn" style="margin-left: 25%;">Atendimento</button>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="card" style="width: 18rem;">
+                  <img src="https://cdn.discordapp.com/attachments/929744400056193044/978250896553148437/air-ticket-162507919.jpg" style="height: 100px; width: 120px; margin: 10px;padding-left: 30%;" class="card-img-top">
+                  <div class="card-body">
+                    <p class="card-text" style="text-align: justify; margin: 5px;">Os tickets servem para apresentar a algum dos nossos agentes, alguma situação que queira ver resolvida. O ticket é aberto e após uma revisão, será resolvido por algum dos nossos agentes, inteiramente à sua disposição. Por favor queira verificar se já existe, na secção FAQ, alguma resposta à sua pergunta!</p>
+                    <button type="button" onclick="location.href='/tickets/'" class="btn" style="margin-left: 25%;">Tickets</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+    .
+    <div class="BlockWhite">
+            <article class="cartao">
+                <div class="card-img">
+                    <img src="https://cdn.discordapp.com/attachments/929744400056193044/978257987774840862/img_432x2432015_10_30_23_28_00_493009.jpg" alt="waves" width="275" height="240">
+                </div>
+                <div style="padding-left: 5%; text-align: justify;">
+                    <h2>O Aeroporto</h2>
+                    O Aeroporto Internacional da Madeira ou Cristiano Ronaldo (IATA: FNC, ICAO: LPMA), igualmente conhecido como Aeroporto Cristiano Ronaldo, Aeroporto Internacional da Madeira ou Aeroporto da Madeira e ainda popularmente chamado de Aeroporto de Santa Catarina, é um aeroporto internacional português localizado no concelho de Santa Cruz, na ilha da Madeira. É o quarto aeroporto mais movimentando de Portugal tendo processado mais de 3 milhões de passageiros em 2017 e o mais movimentando da Região Autónoma da Madeira. O tráfego aéreo do aeroporto é deveras nórdico, centro-europeu, além do trânsito doméstico e do proveniente das Ilhas Britânicas.
+                </div>
+            </article>
+
+    </div>
+
+    <div class="BlockWhite">
+        <article class="cartao">
+            <div class="card-img">
+                <img src="https://cdn.discordapp.com/attachments/929744400056193044/978263384724222002/02_voos_destinos_1_0.jpg" alt="waves" width="275" height="240">
+            </div>
+            <div style="padding-left: 5%; text-align: justify;">
+                <h2>Companhias Operacionais</h2>
+                <ul>
+                    <li>TAP Air Portugal</li>
+                    <li>SATA Air Azores</li>
+                    <li>EasyJet</li>
+                    <li>Ryanair</li>
+                    <li>British Airways</li>
+                    <li>Lufthansa</li>
+                    <li>Transavia</li>
+                    <li>Binter Canarias</li>
+                </ul>
+            </div>
+        </article>
+
+    </div>
+    .
+    <div class="BlockWhiteGreyFooter">
+        <h2 class="categoriaFooter">Contactos</h2>
+        <div style="margin-top: 2%; display: inline-block">
+            <p>Tel. +351 291 000 000</p>
+            <p>Fax. +351 291 000 001</p>
+            <p>email: heldesk@aeroporto.com</p>
+
+
+
+        </div>
+        <div style="float: right; margin-right: 5%;">
+            <a>Siga-nos nas Redes Sociais:</a>
+            <ul>
+                <li class=""><a href=" https://www.facebook.com/aeroportosmadeira/">Facebook</a></li>
+                <li><a href="https://www.youtube.com/user/ANAAEROPORTOS">Youtube</a></li>
+                <li><a href="https://www.instagram.com/aeroportosmadeira/">Instagram</a></li>
+            </ul>
+
+        </div>
+
+
+    </div>
+
+</body>
+</html>

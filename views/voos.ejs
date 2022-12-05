@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="https://cdn.discordapp.com/attachments/929744400056193044/968194795250020402/airplane-icon-plane-sign-vector-22346493.png">
+  <base href="/">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.2/font/bootstrap-icons.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+  <title>Atendimento</title>
+  <style>
+
+    body {
+      font-size: 1rem;
+      font-family: Arial, sans-serif;
+    }
+
+    #m {
+      width: 93%; 
+    }
+
+    .message_form {
+      background-color: #CAE8F2; 
+      padding: 10px 10px 10px 10px;
+    }
+
+    #messages {
+      list-style-type: none;
+      height: 68vh;
+    }
+
+    #messages li {
+      padding: 15px 15px;
+      border-radius: 15px;
+      width: fit-content;
+      height: fit-content;
+    }
+
+    .btn_edit_delete{
+      float: none;
+    }
+    
+
+  </style>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+
+    var editando = false;
+    var i = 0;
+    
+    $(function(){
+      // Enables popover
+      $("[data-toggle=popover]").popover();
+    });
+
+    function intToRGB(i) {
+      var c = (i & 0x00FFFFFF)
+              .toString(16)
+              .toUpperCase();
+
+      return "00000".substring(0, 6 - c.length) + c;
+    }
+
+    function hashCode(str) { // java String#hashCode
+      var hash = 0;
+      for (var i = 0; i < str.length; i++) {
+        hash = str.charCodeAt(i) + ((hash << 5) - hash);
+      }
+      var result = intToRGB(hash);
+      console.log(result);
+      return result;
+    }
+
+    $(document).ready(function () {
+
+      var socket = io();
+
+      //We don't need to pass the name, it will be obtained from the session
+      socket.emit("join");
+
+      $('#form-chat').submit(function () {
+        socket.emit('chat message', $('#m').val());
+        console.log($('#m').val())
+        $('#m').val('');
+        return false;       
+      });
+        
+      socket.on('chat message', function (msg) {
+        $('#messages').append('<p><li id=' + i +' style="background-color:#CAE8F2; display: inline-block;"' + hashCode(msg.id) + '>' + ( msg.id + ': ' + msg.msg ) + 
+          '</li><div class="btn-group dropend">' + 
+          '<button type="button" id="3dots' + i + '" class="btnEdit" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-three-dots" id="3dots" onkeyup="varcode"></i></button>' +
+          '<ul class="dropdown-menu" aria-labelledby="dropupCenterBtn" style="border: none;">' +
+          '<button class="btn_edit_delete" type="button" id="editar' + i + '" onclick="editarMsg(' + i + ')">Editar</button>' + 
+          '<button class="btn_edit_delete" type="button" id="apagar' + i + '" onclick="apagarMsg(' + i + ')">Apagar</button></p></ul></div>'); 
+        i++;
+        window.scrollTo(0,document.body.scrollHeight);
+      });
+
+      socket.on('update',function(msg){
+        $('#messages').append('<li style="background-color:#73B2CA; color:black; margin-top: 10px; display: inline-block;">' + (msg) + '</li>');
+        window.scrollTo(0,document.body.scrollHeight);
+      });
+      
+      
+    });
+ 
+
+    function apagarMsg(i) {
+        $('#' + i ).remove();
+        $('#apagar' + i ).remove();
+        $('#editar' + i ).remove();
+        $('#3dots' + i ).remove();
+    }
+
+    function editarMsg(i) {
+      $('#m').val($('#'+ i + '').text());
+      $("#btnEdit").click(function(){
+        $('#'+ i + '').text($('#m').val());
+      });
+    }
+  
+  
+
+  </script>
+</head>
+<body class="background">
+    
+  <div class="WhitePage">
+    <div class="topbtn">
+      <div class="dropdown">
+
+        <button type="button" class="btntopC" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+          <%= title %>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <li><a class="dropdown-item" href="/atendimento/transporte">Transporte</a></li>
+          <li><a class="dropdown-item" href="/atendimento/bagagem">Bagagem</a></li>
+          <li><a class="dropdown-item" href="/atendimento/servicos">Servicos</a></li>
+          <li><a class="dropdown-item" href="/atendimento/mobilidade_reduzida">Mobilidade Reduzida</a></li>
+          <li><a class="dropdown-item" href="/atendimento/outros">Outros</a></li>          
+        </ul>
+      </div>
+      
+      <img src="https://cdn.discordapp.com/attachments/929744400056193044/971485948955205672/airplane-icon-plane-sign-vector-22346493.png" onclick="location.href='/'" class="btn_init2" style="height: 15%; width: 15%;">
+      <%- include('./partials/offCanvas.ejs') %>
+      <%- include('./partials/bFaq.ejs') %>
+      <%- include('./partials/bTickets.ejs') %>
+      <%- include('./partials/bAtendimento.ejs') %>
+      <%- include('./partials/bAgentes.ejs') %>
+      <%- include('./partials/bUser.ejs') %>
+
+    </div>
+  
+    <div class="BlockWhiteGreyA">
+        <ul id="messages"></ul>
+    </div>
+    <div class="BlockWhiteGreyA">
+      <form class="message_form" id="form-chat" action="">
+        <div class="dropup-center dropup">
+          <button type="button" class="btnEdit" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-emoji-smile" style="font-size: 1.5rem; color: black;"></i>
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropupCenterBtn">
+            <li><a class="dropdown-item" onclick="$('#m').val($('#m').val() + '😀');">😀</a></li> 
+            <li><a class="dropdown-item" onclick="$('#m').val($('#m').val() + '👀');">👀</a></li> 
+            <li><a class="dropdown-item" onclick="$('#m').val($('#m').val() + '🧳');">🧳</a></li> 
+            <li><a class="dropdown-item" onclick="$('#m').val($('#m').val() + '💺');">💺</a></li> 
+            <li><a class="dropdown-item" onclick="$('#m').val($('#m').val() + '✈️');">✈️</a></li>
+          </ul>
+          <a role="button" data-toggle="popover" data-bs-placement="top" data-bs-content="">
+            <i class="bi bi-lightning-charge" style="font-size: 1.5rem; color: black;"></i>
+          </a>
+          <input type="text" id="m" name="m" class="BlockWhiteGreyA" autocomplete="off" placeholder="mensagem" style="width: 90%;">
+          
+          <button type="submit" id="btnSend" class="btnSend" ><i class="bi bi-send" style="font-size: 1.5rem;" ></i></button>
+          <button type="button" id="btnEdit" class="btnEdit" ><i class="bi bi-pencil-square" style="font-size: 1.5rem;"></i></button>
+        </div>
+      </form>
+    </div>
+    
+  </div>
+
+</body>
+</html>

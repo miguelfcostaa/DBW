@@ -1,0 +1,47 @@
+<style>
+  .svgCircleP {
+    position: absolute;
+    top: 30px;
+    right: 192px;
+    border: 3px solid white ;
+    border-radius: 100%;
+  }
+
+  .svgPerfil {
+    position: absolute;
+    top: 38px;
+    right: 200px;
+  }
+
+  .svgPerfil2 {
+    position: absolute;
+    top: 44px;
+    right: 198px; 
+  }
+
+  .nTickets {
+    position: absolute;
+    top: 35px;
+    right: 225px;
+    font: bold;
+    font-size: 1.8rem;
+  }
+</style>
+
+<div class="circleP">
+    <svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" fill="#CAE8F2" class="svgCircleP" viewBox="0 0 16 16">
+      <circle cx="8" cy="8" r="8"/>
+    </svg>
+    <% if (isAuthenticated) { %>
+          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black" class="svgPerfil2" viewBox="0 0 16 16">
+          <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+          </svg>
+      <span class="nTickets"><%= ntickets %></span>
+  <% } else { %>
+      <a class="perfil" href="/login">
+          <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="black" class="svgPerfil" viewBox="0 0 16 16">
+          <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+          </svg>
+      </a>
+  <% } %>
+</div>

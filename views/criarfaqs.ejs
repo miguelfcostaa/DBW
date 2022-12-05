@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src ="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    <title>Aeroporto Helpdesk - Criar Tickets</title>
+    <base href="/">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="https://cdn.discordapp.com/attachments/929744400056193044/968194795250020402/airplane-icon-plane-sign-vector-22346493.png">
+</head>
+<body class="background">
+<div class="BlockWhite2">
+    <img src="https://cdn.discordapp.com/attachments/929744400056193044/971485948955205672/airplane-icon-plane-sign-vector-22346493.png" onclick="location.href='/'" class="btn_init2">
+    
+    <%- include('./partials/bFaq.ejs') %>
+    <%- include('./partials/bTickets.ejs') %>
+    <%- include('./partials/bAtendimento.ejs') %>
+    <%- include('./partials/bUser.ejs') %>
+    <div>
+        <svg style="float: left;" xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
+            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+            <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"/>
+        </svg>
+        <h1 style="font-size: 1.9rem;">    FAQ</h1>
+    </div>
+    
+    <button type="button" onclick="location.href='/faq/'" class="btntopA" >FAQ's</button>
+    <div class="BlockBlue2" style="overflow: auto;">
+        <h1> Criar FAQ</h1>
+        <form action="/criarfaq" method="POST">
+            <input type="text" id="pergunta" name="pergunta" class="BlockWhiteGrey" placeholder="Pergunta" required>
+            <div class="bigtextbox">
+                <textarea class="BlockWhiteGrey" id="resposta" name="resposta" rows="5" cols="55" placeholder="Resposta" required></textarea>
+            </div>
+            <p> <select id="categoria" class="agenteSelect" name="categoria" aria-label="Default select example">
+                <option selected>Categoria</option>
+                    <option value="Aerobus"> Aerobus </option>
+                    <option value="Serviços e Compras"> Serviços e Compras </option>
+                    <option value="Mobilidade Reduzida"> Mobilidade Reduzida </option>
+                    <option value="Bagagem"> Bagagem </option>
+                    <option value="Voos"> Voos </option>
+                </select>
+            <input type="hidden" id="pinned" name="pinned" value="false">
+            <div class="submit">
+                <p><input type="submit" value="Enviar" class="btn3"/></p>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

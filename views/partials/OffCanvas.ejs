@@ -1,0 +1,43 @@
+<button class="btntopA" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">Abrir Ticket/FAQ</button>
+<div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="staticBackdropLabel">Abrir Ticket</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+
+    <div class="offcanvas-body">
+      <form action="/criartickets" method="POST">
+        <input type="text" id="titulo" name="titulo" class="BlockWhiteGrey" placeholder="Título" required>
+        <input type="hidden" id="agente" name="agente" value="Todos">
+        <div class="bigtextbox">
+          <textarea class="BlockWhiteGrey" id="descricao" name="descricao" rows="5" cols="55" placeholder="Descrição" required></textarea>
+        </div>
+        <input type="text" id="email" name="email" class="BlockWhiteGrey" placeholder="Email (obrigatório)" required>
+        <input type="hidden" id="estado" name="estado" value="Aberto">
+        <div class="offcanvas-body">
+          <input type="submit" value="Enviar" class="btn3"/>
+        </div>
+        
+      </form>
+      <p> </p>
+      <h5 class="offcanvas-title" id="staticBackdropLabel">Abrir FAQ</h5>
+      <form action="/criarfaq" method="POST">       
+        <input type="text" id="pergunta" name="pergunta" class="BlockWhiteGrey" placeholder="Pergunta" required>
+        <div class="bigtextbox">
+            <textarea class="BlockWhiteGrey" id="resposta" name="resposta" rows="5" cols="55" placeholder="Resposta" required></textarea>
+        </div>
+        <p> <select id="categoria" class="agenteSelect" name="categoria" aria-label="Default select example">
+            <option selected>Categoria</option>
+                <option value="Aerobus"> Aerobus </option>
+                <option value="Serviços e Compras"> Serviços e Compras </option>
+                <option value="Mobilidade Reduzida"> Mobilidade Reduzida </option>
+                <option value="Bagagem"> Bagagem </option>
+                <option value="Voos"> Voos </option>
+            </select>
+        <input type="hidden" id="pinned" name="pinned" value="false">
+        <div class="offcanvas-body">
+          <input type="submit" value="Enviar" class="btn3"/>
+        </div>
+      </form>
+    </div>
+</div>

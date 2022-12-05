@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Aeroporto Helpdesk</title>
+        <script src ="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js" ></script>
+        <link rel="stylesheet" href="/style.css">
+        <link rel="icon" href="https://cdn.discordapp.com/attachments/929744400056193044/968194795250020402/airplane-icon-plane-sign-vector-22346493.png">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+
+    </head>
+    <style>
+        #mensagem {
+            position: absolute;
+            top: 450px;
+            right: 280px;
+            border: 7px solid #EBEEEF;
+            width: 35%;
+            height: 5%;
+            font-size: 1rem;
+        }
+
+        #btnSend{
+            position: absolute;
+            top: 520px;
+            right: 800px;
+        }
+
+    </style>
+
+    <body class="background">
+        <div class="BlockWhite">
+            <img src="https://cdn.discordapp.com/attachments/929744400056193044/971485948955205672/airplane-icon-plane-sign-vector-22346493.png" onclick="location.href='/'" class="btn_init" >
+            <%- include('./partials/bFaq.ejs') %>
+            <%- include('./partials/bTickets.ejs') %>
+            <%- include('./partials/bAtendimento.ejs') %>
+            <%- include('./partials/bProfile.ejs') %>
+            <%- include('./partials/bAgentes.ejs') %>   
+            <h1>  Profile </h1>
+            <div class="BlockWhiteGrey">
+                <p style="font-size:1.7rem; padding: 15px;"><b>Nome:</b> <%= users.nome %> <%= users.apelido %></p>
+                <p style="font-size:1.7rem; padding: 15px;"><b>Email:</b> <%= users.email %></p>
+                <p style="font-size:1.7rem; padding: 15px;"><b>Username:</b> <%= users.username %></p>
+                <p style="font-size:1.7rem; padding: 15px;"><b>Nº tickets resolvidos: </b> <%= tresolvidos %> </p>
+
+                <form action="/respostas" method="POST" >
+                    <input id="mensagem" name="mensagem" placeholder="Respostas rapidas">
+                    <input type="hidden" value="<%= users.nome %>" name="agente" >
+                    <p><input type="submit" id="btnSend" value="Enviar" class="btn3"/></p>
+                </form>
+                <div class="BlockBluePro">
+                    <div data-bs-spy="scroll" data-bs-target="#navbar-example3" data-bs-smooth-scroll="true" tabindex="0">
+                    <% if (msgrapidas.length > 0) { %>
+                        <% msgrapidas.forEach(msgrapida => { %>
+                            <p><%= msgrapida.mensagem%></p>
+                        <% }) %>
+                    <% } else { %>
+                        <p> Não existem mensagens rapidas.</p>
+                    <% } %>     
+                    </div>  
+                 </div>
+            </div>  
+        </div>
+    </body>

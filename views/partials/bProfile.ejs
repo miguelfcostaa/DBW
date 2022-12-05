@@ -1,0 +1,19 @@
+<div class="circleP">
+    <svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" fill="#CAE8F2" class="svgCircleP" viewBox="0 0 16 16">
+      <circle cx="8" cy="8" r="8"/>
+    </svg>
+    <% if (isAuthenticated) { %>
+        <a class="perfil" href="/profile/<%= user._id %>">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black" class="svgPerfil2" viewBox="0 0 16 16">
+            <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+            </svg>
+        </a>
+        <span class="nTickets"><%= ntickets %></span>
+    <% } else { %>
+        <a class="perfil" href="/login">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="black" class="svgPerfil" viewBox="0 0 16 16">
+            <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+            </svg>
+        </a>
+    <% } %>
+</div>

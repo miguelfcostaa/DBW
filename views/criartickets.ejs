@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src ="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    <title>Aeroporto Helpdesk - Criar Tickets</title>
+    <base href="/">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="https://cdn.discordapp.com/attachments/929744400056193044/968194795250020402/airplane-icon-plane-sign-vector-22346493.png">
+</head>
+<body class="background">
+<div class="BlockWhite">
+    <img src="https://cdn.discordapp.com/attachments/929744400056193044/971485948955205672/airplane-icon-plane-sign-vector-22346493.png" onclick="location.href='/'" class="btn_init2">
+    <%- include('./partials/bFaq.ejs') %>
+    <%- include('./partials/bTickets.ejs') %>
+    <%- include('./partials/bAtendimento.ejs') %>
+    <%- include('./partials/bUser.ejs') %>
+    <div>
+        <svg style="float: left;" xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="black" class="bi bi-ticket-detailed" viewBox="0 0 16 16">
+            <path d="M4 5.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5Zm0 5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5ZM5 7a1 1 0 0 0 0 2h6a1 1 0 1 0 0-2H5Z"/>
+            <path d="M0 4.5A1.5 1.5 0 0 1 1.5 3h13A1.5 1.5 0 0 1 16 4.5V6a.5.5 0 0 1-.5.5 1.5 1.5 0 0 0 0 3 .5.5 0 0 1 .5.5v1.5a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 11.5V10a.5.5 0 0 1 .5-.5 1.5 1.5 0 1 0 0-3A.5.5 0 0 1 0 6V4.5ZM1.5 4a.5.5 0 0 0-.5.5v1.05a2.5 2.5 0 0 1 0 4.9v1.05a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-1.05a2.5 2.5 0 0 1 0-4.9V4.5a.5.5 0 0 0-.5-.5h-13Z"/>
+        </svg>
+        <h1 style="font-weight: lighter; font-family: initial; font-size: 1.9rem; margin-top: 0px; margin-bottom: 15px;">    Tickets</h1>
+    </div>
+    <button type="button" onclick="location.href='/tickets/'" class="btntopA" >Tickets</button>
+    <div class="BlockBlue2">
+
+        <h1 class="H2"> Criar Tickets</h1>
+        <form action="/criartickets" method="POST">
+            <input type="text" id="titulo" name="titulo" class="BlockWhiteGrey" placeholder="Título">
+            <div class="bigtextbox">
+                <textarea class="BlockWhiteGrey" id="descricao" name="descricao" rows="5" cols="55" placeholder="Descrição"></textarea>
+             </div>
+                <input type="text" id="email" name="email" class="BlockWhiteGrey" placeholder="Email">
+                <input type="hidden" id="estado" name="estado" value="Aberto">
+             <div class="submit">
+                <p> <select id="agente" class="agenteSelect" name="agente" aria-label="Default select example">
+                    <option value="Todos" selected>Agente</option>
+                    <% users.forEach(user => { %>
+                        <option value = "<%= user.nome %>"> <%= user.nome %> </option>
+                    <% }) %>
+                    </select>
+                <input type="submit" value="Enviar" class="btn3"/></p>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

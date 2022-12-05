@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src ="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js" ></script>
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    <base href="/">
+    <link rel="icon" href="https://cdn.discordapp.com/attachments/929744400056193044/968194795250020402/airplane-icon-plane-sign-vector-22346493.png">
+    <link rel="stylesheet" href="style.css">
+    <title>Aeroporto Helpdesk </title>
+</head>
+<script>
+    
+    function verifyPassword() {
+        var name = document.getElementById("nome").value;
+        var lastname = document.getElementById("apelido").value;
+        var email = document.getElementById("email").value;
+        var username = document.getElementById("username").value;
+        var password = document.getElementById("password").value;
+
+        //verifica se o nome está vazio
+        if(name == "") {
+            document.getElementById("message").innerHTML = "<br><i class='fas fa-exclamation-triangle' style='margin-left: 15px'></i>" + " Preencha o Nome!";
+            return false;
+        }
+        //verifica se o apelido está vazio
+        if(lastname == "") {
+            document.getElementById("message").innerHTML = "<br><i class='fas fa-exclamation-triangle' style='margin-left: 15px'></i>" + " Preencha o Apelido!";
+            return false;
+        }
+        //verifica se o email está vazio
+        if(email == "") {
+            document.getElementById("message").innerHTML = "<br><i class='fas fa-exclamation-triangle' style='margin-left: 15px'></i>" + " Preencha o Email!";
+            return false;
+        }
+        //verifica se o username está vazio
+        if(username == "") {
+            document.getElementById("message").innerHTML = "<br><i class='fas fa-exclamation-triangle' style='margin-left: 15px'></i>" + " Preencha o Username!";
+            return false;
+        }
+        //verifica se a password está vazia
+        if(password == "") {
+            document.getElementById("message").innerHTML = "<br><i class='fas fa-exclamation-triangle' style='margin-left: 15px'></i>" + " Preencha a password!";
+            return false;
+        }
+    
+        //verifica se tem no minimo 3 carateres
+        if(password.length < 3) {
+            document.getElementById("message").innerHTML = "<br><i class='fas fa-exclamation-triangle' style='margin-left: 15px'></i>" + " Preencha a password!";
+            return false;
+        }
+    
+        //verifica se passa o maximo de 8 carateres
+        if(password.length > 8) {
+            document.getElementById("message").innerHTML = "<br><i class='fas fa-exclamation-triangle' style='margin-left: 15px'></i>" + " Password não pode ultrapassar 8 carateres.";
+            return false;
+        } 
+    }
+
+    var check = function() {
+        if (document.getElementById('password').value == document.getElementById('confirm_password').value) {
+            document.getElementById('verificaPassword').textContent = '☑';
+            document.getElementById('verificaPassword').style.color = 'green';
+        } 
+        else {
+            document.getElementById('verificaPassword').textContent = '☒';
+            document.getElementById('verificaPassword').style.color = 'red';
+        }
+    }   
+
+    function check_pass() {
+        if (document.getElementById('password').value ==
+            document.getElementById('confirm_password').value) {
+            document.getElementById('submit').disabled = false;
+        } else {
+            document.getElementById('submit').disabled = true;
+        }
+    }
+
+</script>
+
+<body class="background">
+    <img src="https://cdn.discordapp.com/attachments/929744400056193044/971485948955205672/airplane-icon-plane-sign-vector-22346493.png" onclick="location.href='/'" class="btn_init3">
+
+
+<div class="BlockWhiteR">
+    
+    <h1 class="T1"> Registo </h1>
+    <div class="BlockBlueR">
+
+        <div class="form-registo">
+            <form action="/registo" method="post" onsubmit ="return verifyPassword()">
+                <label class="labelRegisto">Nome e Apelido</label><br>
+                <input id="nome" type="text" class="form-registo-i" name="nome" placeholder="ex: Miguel">
+                <input id="apelido" type="text" class="form-registo-i" name="apelido" placeholder="ex: Maria"><br>
+
+                <label class="labelRegisto">Email</label><br>
+                <input id="email" type="email" class="form-registo-i" name="email" placeholder="example@email.com"><br>
+                
+                <label class="labelRegisto">Nome de utilizador</label><br>
+                <input id="username" type="text" class="form-registo-i" name="username" placeholder="(maximo 8 carateres)"><br>
+
+                <label class="labelRegisto">Password</label><br>
+                <input id="password" type="password"  class="form-registo-i" name="password" placeholder="(3 - 8 carateres)" onkeyup='check();' onchange='check_pass();'>
+                <input id="confirm_password" type="password" class="form-registo-i" name="confirm_password" placeholder="Confirmar Password" onkeyup='check();' onchange='check_pass();'>
+                <span id="verificaPassword" style="font-size: 1.8rem;">☐</span>
+                <span id='message' style="color:red; margin-left: 15px ;"></span><br>
+                
+                <div class="submit">
+                    <br><input type="submit" id="submit" name="submit" value="Registar-se" class="btn3"/>
+                </div>
+            </form>
+        </div>
+        <div class="link">
+            <br>Já tem conta? <a href="/login" >Entre com login</a>
+        </div>
+        
+    </div>
+</div>
+</body>
+</html>
